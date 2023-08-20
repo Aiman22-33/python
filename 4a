@@ -1,0 +1,66 @@
+def merge_sort(lst):
+    totalel=len(lst)
+    if totalel>1:
+        mid=totalel//2
+        left_half=lst[:mid]
+        print("left half is ",left_half)
+        right_half=lst[mid:]
+        print("right half is ",right_half)
+
+        #recursively sort both halves
+        merge_sort(left_half)
+        merge_sort(right_half)
+
+        #merge the two sorted halves
+        i=j=k=0
+        while i<len(left_half) and j<len(right_half):
+           if left_half[i]<right_half[i]:
+              lst[k]=left_half[i]
+              i+=1
+           else:
+               lst[k]=right_half[j]
+               j+=1
+               k+=1
+        while i<len(left_half):
+             lst[k]=left_half[i]
+             i+=1
+             k+=1
+    return lst
+def insertion_sort(arr):
+    for i in range(1,len(arr)):
+        key=arr[i]
+        j=i-1
+        while j >= 0 and key < arr[j]:
+            arr[j+1] = arr[j]
+            j -= 1
+        arr[j+1] = key
+    return arr
+
+
+def intlist():
+    my_list=[]
+    num=int (input("enter the total number if elements to sort "))
+    for i in range(num):
+        numelem=int(input("enter the number"))
+        my_list.append(numelem)
+    return my_list
+
+while True:
+    sel=int(input("enter----1.insertion sort,2.mergesort,3.exit"))
+    if sel==3:
+        break
+    elif sel==1:
+      my_list=intlist()
+      print("unsorted list before insertion list")
+      print(my_list)
+      insprt=insertion_sort(my_list)
+      print("after insertion sort",insprt)
+    elif sel==2:
+        my_list=intlist()
+        print("unsorted list before merge sort")
+        print(my_list)
+        mrsort=merge_sort(my_list)
+        print(mrsort)
+    else:
+        print("!!!!!select the correct option,either 1 or 2")
+        break
